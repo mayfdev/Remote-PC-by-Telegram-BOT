@@ -6,6 +6,7 @@ space_b = KeyboardButton('🔽 Пробел')
 right_b = KeyboardButton('⏩ Перемотать в перед')
 left_b = KeyboardButton('⏪  Перемотать назад')
 sleap_b = KeyboardButton('💤 Уйти в сон')
+screanshot_b = KeyboardButton('🌄 Скриншот')
 remote = ReplyKeyboardMarkup(resize_keyboard=True)
 
-remote.add(space_b, right_b, left_b, sleap_b)
+remote.add(space_b, right_b, left_b, sleap_b, screanshot_b)
