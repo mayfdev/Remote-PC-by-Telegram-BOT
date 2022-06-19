@@ -1,10 +1,7 @@
-from click import command
+
 import keyboard
 import os
-
-from aiogram.types import ReplyKeyboardRemove, \
-    ReplyKeyboardMarkup, KeyboardButton, \
-    InlineKeyboardMarkup, InlineKeyboardButton
+from keyboard_bot import *
 from aiogram import Bot, Dispatcher, types, executor
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
@@ -14,18 +11,11 @@ bot = Bot(token=TOKEN)
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
 
-space_b = KeyboardButton('🔽 Пробел')
-right_b = KeyboardButton('⏩ Перемотать в перед')
-left_b = KeyboardButton('⏪  Перемотать назад')
-sleap_b = KeyboardButton('💤 Уйти в сон')
-remote = ReplyKeyboardMarkup(resize_keyboard=True)
-remote.add(space_b, right_b, left_b, sleap_b)
-
 
 
 @dp.message_handler(commands=['start'])
 async def START(message: types.Message):
-    await message.answer('<code>🎆 Добро Пожаловать</code>\n<i>by <a href="https://lolz.guru/threads/3526061">MAYFDEV</a></i>', parse_mode= types.ParseMode.HTML, reply_markup=remote)
+    await message.answer('<code>🎆 Добро Пожаловать</code>\n\n<b>Бот создан для удаленного доступа к компютеру</b>\n\n<i>by <a href="https://lolz.guru/threads/3526061">MAYFDEV</a></i>', parse_mode= types.ParseMode.HTML, reply_markup=remote)
 
 async def SPACE(message: types.Message):
     keyboard.press_and_release('space')
@@ -40,8 +30,9 @@ async def LEFT(message: types.Message):
     await message.answer('⏪')
 
 async def SLEAP(message: types.Message):
-    os.system("rundll32.exe powrprof.dll,SetSuspendState 0,1,0") 
+    #os.system("rundll32.exe powrprof.dll,SetSuspendState 0,1,0") 
     await message.answer('💤')
+    raise SystemExit
 
 @dp.message_handler(content_types=['text'])
 async def main(message : types.Message):
